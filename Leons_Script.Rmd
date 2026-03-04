@@ -6,13 +6,60 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Data
-## Import Data 
-### Plot Data
-#### PLot 1
-### Foreign Data
+
 ```{r}
-data <- "xxxx"
+library(CspStandSegmentation)
+```
+
+```{r}
+cloudDir <- "/Users/leonhofmann/Desktop/MMES/Protject 2/data/3dt_404/data/raw/3dtree_404_3596_raw.laz"
+
+#load data
+las <- lidR::readTLS(cloudDir)
+
+```
+
+```{r}
+
+
+#plot data (not on mac)
+
+#classify ground
+las<- lidR::classify_ground(las,lidR::csf())
+head(las@data$X)
+
+
+# DTM generation
+dtm <- las |> lidR::rasterize_terrain(res = 0.1, algorithm = lidR::tin())
+terra::plot(dtm)
+
+```
+
+```{r}
+install.packages("CspStandSegmentation")
+
+
+dsm <- las |> lidR::rasterize_canopy(res = 0.1, algorithm = lidR::pitfree())
+terra::plot(dsm)
+
+chm <- dsm-dtm
+terra::plot(chm)
+
+las_norm <- las - dtm
+
+
+#find tree positions
+map <- las_norm |> CspStandSegmentation::find_base_coordinates_raster(eps=1)
+
+
+las_seg <- las_norm |> CspStandSegmentation::csp_cost_segmentation(map)
+
+lidR::plot(las_seg, color = "TreeID")
+
+#run forest inventory
+inventory <- CspStandSegmentation::forest_inventory(las_seg)
+
+
 ```
 
 ## Process Data
