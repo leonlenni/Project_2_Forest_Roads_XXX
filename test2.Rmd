@@ -3,7 +3,11 @@ title: "Untitled"
 output: html_document
 date: "2026-03-04"
 ---tt
+<<<<<<< HEAD
 Finale test
+=======
+Neuer Test
+>>>>>>> b03e548d45131ba4ad6bfdd44dbd3ec2b3556c31
 Leon
 <<<<<<< HEAD
 <<<<<<< HEAD12345
