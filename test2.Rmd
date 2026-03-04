@@ -10,9 +10,15 @@ hg
 
 Hallo ich heiße adrian
 
+<<<<<<< HEAD
 
 Hallo, es ist sehr warm
 
+=======
+SCHUBIDUBA
+
+
+>>>>>>> e7eb1781c4370aff3fbe2a6854e768368c7f4a7b
 =======
 X1123
 >>>>>>> 1c6192e1aa032d43da185cd680435e859e7ec48d
@@ -37,5 +43,9 @@ You can also embed plots, for example:
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
+
+
+#######Diese Zeiel wurde verändert#######
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
